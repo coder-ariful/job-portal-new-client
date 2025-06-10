@@ -4,7 +4,7 @@ import AuthContext from '../../Context/AuthContext/AuthContext';
 import Swal from 'sweetalert2';
 
 const JobApply = () => {
-    const jobId = useParams()
+    const jobId = useParams() // this params for only search box filed right
     console.log('job id:', jobId);
     const loader = useLoaderData();
     console.log('loader id:', loader._id);

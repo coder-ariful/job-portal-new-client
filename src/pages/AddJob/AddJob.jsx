@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router';
 
 const AddJob = () => {
-    const { loading } = useContext(AuthContext)
+    const { loading, user } = useContext(AuthContext)
     const navigate = useNavigate()
 
     if (loading) {
@@ -88,7 +88,7 @@ const AddJob = () => {
                         icon: "success",
                         draggable: true
                     });
-                    navigate('/')
+                    navigate('/myPostedJobs')
                 }
             })
 
@@ -122,6 +122,13 @@ const AddJob = () => {
                     <input type="string" name='min' className="input grow" placeholder="Min Salary" required />
                     <input type="string" name='max' className="input grow" placeholder="Max Salary" required />
                 </div>
+
+                <label className="label">HR Name</label>
+                <input type="text" name='hr_name' className="input w-full" placeholder="HR Name" required />
+                
+                <label className="label">HR Email</label>
+                <input type="email" name='hr_email' Value={user.email} className="input w-full" placeholder="HR Email" required />
+
                 <label className="label">Company Logo URL</label>
                 <input type="url" name='company_logo' className="input w-full" placeholder="Company Logo URL" required />
                 <label className="label">Application Deadline</label>

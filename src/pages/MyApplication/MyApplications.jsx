@@ -48,7 +48,6 @@ const MyApplications = () => {
         //         console.error('Error deleting application:', error);
         //     });
 
-
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: "btn btn-success",

@@ -3,7 +3,7 @@ import { Link, useLoaderData } from 'react-router';
 
 const JobDetail = () => {
     const job = useLoaderData()
-    console.log(job);
+    // console.log(job);
     return (
         <div className='container mx-auto my-8'>
             <h3 className='text-4xl'> Job Details For {job.title}</h3>
