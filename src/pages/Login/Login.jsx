@@ -5,6 +5,7 @@ import AuthContext from '../../Context/AuthContext/AuthContext';
 import SocialLogin from '../../Common/SocialLogin';
 import { Link, useLocation, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const Login = () => {
 
@@ -21,7 +22,7 @@ const Login = () => {
         const password = form.password.value;
 
         signInUser(email, password)
-            .then(() => {
+            .then((result) => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -30,11 +31,16 @@ const Login = () => {
                     timer: 1500
                 });
                 navigate(reDirectTo, { replace: true }); // Redirect to the previous page or home
+                console.log('sign In ', result.user.email);
+                const user = { email : email}
+                axios.post('http://localhost:3000/jwt', user, {withCredentials : true})
+                .then(data => console.log(data.data))
                 form.reset(); // Reset the form after successful login
 
             })
             .catch(error => {
                 console.error('Error logging in:', error);
+                alert('there is a error.')
             });
     };
     return (
