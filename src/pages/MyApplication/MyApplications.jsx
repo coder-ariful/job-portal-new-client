@@ -2,19 +2,23 @@ import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../Context/AuthContext/AuthContext';
 import { MdDeleteForever } from "react-icons/md";
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const MyApplications = () => {
     const { user, loading } = useContext(AuthContext);
     const [jobs, setJobs] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:3000/job-application?email=${user?.email}`)
+        // fetch(`http://localhost:3000/job-application?email=${user?.email}`)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         setJobs(data);
+        //         // You can set the data to state if needed
+        //     })
 
-            .then(res => res.json())
-            .then(data => {
-                setJobs(data);
-                // You can set the data to state if needed
-            })
+        axios.get(`http://localhost:3000/job-application?email=${user?.email}`, {withCredentials : true})
+            .then(res => setJobs(res.data))
+
             .catch(error => {
                 console.error('Error fetching applications:', error);
             });

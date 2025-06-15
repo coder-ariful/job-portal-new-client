@@ -1,15 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../Context/AuthContext/AuthContext';
 import { Link } from 'react-router';
+import axios from 'axios';
 
 const MyPostedJobs = () => {
     const { user } = useContext(AuthContext)
     const [jobs, setJobs] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:3000/jobs?email=${user.email}`)
-            .then(res => res.json())
-            .then(data => setJobs(data))
+
+        // fetch(`http://localhost:3000/jobs?email=${user.email}`)
+        //     .then(res => res.json())
+        //     .then(data => setJobs(data))
+
+        //  ====== use axios here =======
+        axios.get(`http://localhost:3000/jobs?email=${user.email}`)
+        .then(res => setJobs(res.data))
+
     }, [user.email])
     return (
         <div>
