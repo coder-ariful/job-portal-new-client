@@ -16,11 +16,15 @@ const MyApplications = () => {
         //         // You can set the data to state if needed
         //     })
 
-        axios.get(`http://localhost:3000/job-application?email=${user?.email}`, {withCredentials : true})
+        axios.get(`http://localhost:3000/job-application?email=${user?.email}`, { withCredentials: true })
             .then(res => setJobs(res.data))
 
             .catch(error => {
-                console.error('Error fetching applications:', error);
+                Swal.fire({
+                    title: error.response.data.message, 
+                    icon: "error",
+                    draggable: true
+                });
             });
     }, [user?.email])
 
