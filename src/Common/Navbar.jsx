@@ -5,7 +5,7 @@ import jobLogo from '../assets/images/job-logo.png'; // Assuming you have a logo
 
 const Navbar = () => {
 
-    const { user,signOutUser } = useContext(AuthContext)
+    const { user, signOutUser } = useContext(AuthContext)
 
     const links = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
@@ -44,7 +44,10 @@ const Navbar = () => {
                             <button onClick={signOutUser} className="btn">Logout</button>
                         </>
                     ) : (
-                        <Link to="/register" className="btn">Register</Link>
+                        <>
+                            <Link to="/register" className="btn">Register</Link>
+                            <Link to="/signIn" className="btn">Login</Link>
+                        </>
                     )
                 }
             </div>
