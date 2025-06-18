@@ -28,6 +28,7 @@ const MyApplications = () => {
                     draggable: true
                 });
             });
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user?.email])
 
     // for (const job of jobs) {

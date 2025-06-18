@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import AuthContext from './AuthContext';
 import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import auth from '../../Firebase/firebase.config';
-// import axios from 'axios';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
+import axios from 'axios';
+// import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 
 
@@ -13,7 +13,7 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true) // by default, loading is true in this AuthProvider file .
     const googleProvider = new GoogleAuthProvider(); // Initialize Google Auth Provider
     const githubProvider = new GithubAuthProvider();
-    const axiosInstance = useAxiosSecure()
+    // const axiosInstance = useAxiosSecure()
 
 
     const createUser = (email, password) => {
@@ -48,14 +48,14 @@ const AuthProvider = ({ children }) => {
             console.log(currentUser);
             if (currentUser?.email) {
                 const user = { email: currentUser.email }
-                // axios.post('http://localhost:3000/jwt', user, { withCredentials: true })
-                axiosInstance.post(`/jwt`, user)
+                axios.post('http://localhost:3000/jwt', user, { withCredentials: true })
+                // axiosInstance.post(`/jwt`, user)
                     .then(res => console.log(res.data))
                 setLoading(false);
             }
             else {
-                // axios.post('http://localhost:3000/logout', {}, { withCredentials: true })
-                axiosInstance.post('/logout')
+                axios.post('http://localhost:3000/logout', {}, { withCredentials: true })
+                // axiosInstance.post('/logout')
                     .then(res => console.log(res.data))
                 setLoading(false)
             }
@@ -64,6 +64,7 @@ const AuthProvider = ({ children }) => {
         return () => {
             unsubscribe();
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const userInfo = {

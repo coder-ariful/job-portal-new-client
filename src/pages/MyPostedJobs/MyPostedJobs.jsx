@@ -29,7 +29,7 @@ const MyPostedJobs = () => {
                     draggable: true
                 });
             });
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user.email])
 
     if (loading) {
