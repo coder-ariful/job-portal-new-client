@@ -37,7 +37,8 @@ const useAxiosSecure = () => {
 
             return Promise.reject(error)
         })
-    }, [])
+        
+    }, [signOutUser])
 
     // useEffect(() => {
     //     axiosInstance.interceptors.response.use(response => {
