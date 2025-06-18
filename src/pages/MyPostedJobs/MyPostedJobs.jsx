@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../Context/AuthContext/AuthContext';
 import { Link } from 'react-router';
-import axios from 'axios';
+// import axios from 'axios';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const MyPostedJobs = () => {
     const { user, loading } = useContext(AuthContext)
     const [jobs, setJobs] = useState([])
+    const axiosInstance = useAxiosSecure()
 
 
 
@@ -17,7 +19,8 @@ const MyPostedJobs = () => {
         //     .then(data => setJobs(data))
 
         //  ====== use axios here =======
-        axios.get(`http://localhost:3000/jobs/user?email=${user.email}`, { withCredentials: true })
+        // axios.get(`http://localhost:3000/jobs/user?email=${user.email}`, { withCredentials: true })
+        axiosInstance.get(`/jobs/user?email=${user.email}`)
             .then(res => setJobs(res.data))
             .catch(error => {
                 Swal.fire({

@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../Context/AuthContext/AuthContext';
 import { MdDeleteForever } from "react-icons/md";
 import Swal from 'sweetalert2';
-import axios from 'axios';
+// import axios from 'axios';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const MyApplications = () => {
     const { user, loading } = useContext(AuthContext);
     const [jobs, setJobs] = useState([]);
+    const axiosInstance = useAxiosSecure()
 
     useEffect(() => {
         // fetch(`http://localhost:3000/job-application?email=${user?.email}`)
@@ -16,7 +18,8 @@ const MyApplications = () => {
         //         // You can set the data to state if needed
         //     })
 
-        axios.get(`http://localhost:3000/job-application?email=${user?.email}`, { withCredentials: true })
+        // axios.get(`http://localhost:3000/job-application?email=${user?.email}`, { withCredentials: true })
+        axiosInstance.get(`/job-application?email=${user?.email}`)
             .then(res => setJobs(res.data))
             .catch(error => {
                 Swal.fire({
