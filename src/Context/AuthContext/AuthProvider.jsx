@@ -48,14 +48,16 @@ const AuthProvider = ({ children }) => {
             console.log(currentUser);
             if (currentUser?.email) {
                 const user = { email: currentUser.email }
-                axios.post('http://localhost:3000/jwt', user, { withCredentials: true })
-                // axiosInstance.post(`/jwt`, user)
+                // axios.post('http://localhost:3000/jwt', user, { withCredentials: true })
+                axios.post('https://job-portal-server-psi-five.vercel.app/jwt', user, { withCredentials: true })
+                    // axiosInstance.post(`/jwt`, user)
                     .then(res => console.log(res.data))
                 setLoading(false);
             }
             else {
-                axios.post('http://localhost:3000/logout', {}, { withCredentials: true })
-                // axiosInstance.post('/logout')
+                // axios.post('http://localhost:3000/logout', {}, { withCredentials: true })
+                axios.post('https://job-portal-server-psi-five.vercel.app/logout', {}, { withCredentials: true })
+                    // axiosInstance.post('/logout')
                     .then(res => console.log(res.data))
                 setLoading(false)
             }

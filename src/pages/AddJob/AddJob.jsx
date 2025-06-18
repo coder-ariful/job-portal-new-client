@@ -73,7 +73,7 @@ const AddJob = () => {
         newJob.requirements = newJob.requirements.split('\n')
         newJob.salaryRange = { min: parseInt(min), max: parseInt(max) }
 
-        fetch('http://localhost:3000/jobs', {
+        fetch('https://job-portal-server-psi-five.vercel.app/jobs', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

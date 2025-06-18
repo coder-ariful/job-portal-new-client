@@ -5,7 +5,8 @@ import { useContext, useEffect } from 'react';
 import Swal from 'sweetalert2';
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3000',
+    // baseURL: 'http://localhost:3000',
+    baseURL : 'https://job-portal-server-psi-five.vercel.app',
     withCredentials: true
 })
 
@@ -27,10 +28,11 @@ const useAxiosSecure = () => {
                         Swal.fire({
                             position: "end",
                             icon: "error",
-                            title: `Access denied`,
+                            title: error.response.data.message,
                             showConfirmButton: true,
                             // timer: 1500
                         });
+                        console.log(error);
                         // navigate('/signIn')
                     })
             }

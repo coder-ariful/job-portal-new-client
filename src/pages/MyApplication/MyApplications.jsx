@@ -81,7 +81,7 @@ const MyApplications = () => {
                     text: "Your file has been deleted.",
                     icon: "success"
                 });
-                fetch(`http://localhost:3000/job-application/${jobId}`, {
+                fetch(`https://job-portal-server-psi-five.vercel.app/job-application/${jobId}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',

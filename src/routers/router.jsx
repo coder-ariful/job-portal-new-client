@@ -24,12 +24,12 @@ const router = createBrowserRouter([
             {
                 path: "jobDetails/:id",
                 element: <PrivateRoute><JobDetail></JobDetail></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:3000/jobDetails/${params.id}`)
+                loader: ({ params }) => fetch(`https://job-portal-server-psi-five.vercel.app/jobDetails/${params.id}`)
             },
             {
                 path: "jobApply/:id",
                 element: <PrivateRoute><JobApply></JobApply></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:3000/jobDetails/${params.id}`)
+                loader: ({ params }) => fetch(`https://job-portal-server-psi-five.vercel.app/jobDetails/${params.id}`)
             },
             {
                 path: "myApplications",
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
             {
                 path: "viewApplications/:job_id",
                 element: <PrivateRoute><ViewApplications></ViewApplications></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:3000/job-application/jobs/${params.job_id}`)
+                loader: ({params}) => fetch(`https://job-portal-server-psi-five.vercel.app/job-application/jobs/${params.job_id}`)
             },
             {
                 path: "addJob",
